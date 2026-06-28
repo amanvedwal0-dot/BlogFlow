@@ -1,0 +1,151 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FULL SCREEN BACKGROUND */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* MAIN CONTAINER */
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* TITLE */
+
+.title {
+  font-size: 34px;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* FORM CARD */
+
+.form-card {
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  margin-bottom: 30px;
+}
+
+/* INPUTS */
+
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font: inherit;
+}
+
+/* BUTTON */
+
+.form-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-card button:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+/* BLOG GRID */
+
+.blog-grid {
+  width: 100%;
+  max-width: 700px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+/* BLOG CARD */
+
+.blog-card {
+  background: rgba(255,255,255,0.05);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.blog-card h2 {
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.blog-card p {
+  color: #cbd5f5;
+  line-height: 1.5;
+}
+
+/* DELETE BUTTON */
+
+.delete {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background: #dc2626;
+}
+
+/* EMPTY TEXT */
+
+.empty {
+  text-align: center;
+  color: #94a3b8;
+}
+
+
+.form-card textarea {
+  min-height: 120px;
+  resize: vertical;
+}
