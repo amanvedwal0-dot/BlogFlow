@@ -4,10 +4,56 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Primary SEO Meta Tags -->
+    <title>BlogFlow — Express Your Thoughts</title>
+    <meta name="title" content="BlogFlow — Express Your Thoughts" />
+    <meta name="description" content="BlogFlow is a modern blogging platform where you can read, write, and share your thoughts with the world. Discover stories, ideas, and expert opinions." />
+    <meta name="keywords" content="blog, blogging platform, write blog, read articles, share ideas, BlogFlow, express thoughts, online blog" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="author" content="BlogFlow" />
+    <link rel="canonical" href="https://blogflow-frontend.vercel.app/" />
+
+    <!-- ✅ Open Graph / Facebook (improves social sharing & Google previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://blogflow-frontend.vercel.app/" />
+    <meta property="og:title" content="BlogFlow — Express Your Thoughts" />
+    <meta property="og:description" content="BlogFlow is a modern blogging platform where you can read, write, and share your thoughts with the world. Discover stories, ideas, and expert opinions." />
+    <meta property="og:image" content="https://blogflow-frontend.vercel.app/og-image.png" />
+    <meta property="og:site_name" content="BlogFlow" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://blogflow-frontend.vercel.app/" />
+    <meta name="twitter:title" content="BlogFlow — Express Your Thoughts" />
+    <meta name="twitter:description" content="BlogFlow is a modern blogging platform where you can read, write, and share your thoughts with the world." />
+    <meta name="twitter:image" content="https://blogflow-frontend.vercel.app/og-image.png" />
+
+    <!-- ✅ Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <title>BlogFlow — Express Your Thoughts</title>
+
+    <!-- ✅ Structured Data (JSON-LD) — Helps Google understand your site -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BlogFlow",
+      "description": "A modern blogging platform where you can read, write, and share your thoughts with the world.",
+      "url": "https://blogflow-frontend.vercel.app/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://blogflow-frontend.vercel.app/?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
