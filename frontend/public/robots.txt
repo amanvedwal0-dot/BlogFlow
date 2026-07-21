@@ -1,8 +1,0 @@
-# robots.txt for BlogFlow
-# Tells search engine crawlers which pages they can visit
-
-User-agent: *
-Allow: /
-
-# Point to your sitemap
-Sitemap: https://blogflow-frontend.vercel.app/sitemap.xml
