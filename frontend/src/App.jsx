@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import DOMPurify from "dompurify";
 import "./App.css";
 import API from "./api";
 import LoginPage from "./LoginPage";
@@ -38,7 +39,6 @@ function App() {
   const [submittingHelp, setSubmittingHelp] = useState(false);
   const editorRef = useRef(null);
   const categoryOptions = categories.length ? categories : defaultCategories;
-  const categorySelectionOptions = categories;
 
   const showFlash = (message, type = "success") => {
     setFlash({ message, type });
@@ -107,6 +107,16 @@ function App() {
     fetchPosts();
   }, []);
 
+  const fetchHelpMessages = async () => {
+    if (!user || user.role !== "admin") return;
+    try {
+      const res = await API.get("/help/messages");
+      setHelpMessages(res.data.helpMessages || []);
+    } catch (error) {
+      showFlash(error.response?.data?.message || "Unable to load help messages", "error");
+    }
+  };
+
   useEffect(() => {
     if (user) {
       fetchNotifications();
@@ -120,16 +130,6 @@ function App() {
       return () => clearInterval(interval);
     }
   }, [user]);
-
-  const fetchHelpMessages = async () => {
-    if (!user || user.role !== "admin") return;
-    try {
-      const res = await API.get("/help/messages");
-      setHelpMessages(res.data.helpMessages || []);
-    } catch (error) {
-      showFlash(error.response?.data?.message || "Unable to load help messages", "error");
-    }
-  };
 
   const handleHelpSubmit = async (e) => {
     e.preventDefault();
@@ -280,7 +280,7 @@ function App() {
       showFlash("Post deleted successfully");
       fetchPosts();
     } catch (error) {
-      showFlash(error.message || "Unable to delete post", "error");
+      showFlash(error.response?.data?.message || error.message || "Unable to delete post", "error");
     }
   };
 
@@ -380,7 +380,7 @@ function App() {
         setSelectedPost(res.data.post);
       }
     } catch (error) {
-      showFlash(error.message || "Unable to post comment", "error");
+      showFlash(error.response?.data?.message || error.message || "Unable to post comment", "error");
     }
   };
 
@@ -549,7 +549,7 @@ function App() {
                   <p>Browse posts, like content, leave comments, and publish stories with a rich editor.</p>
                 </div>
                 <div className="hero-actions">
-                  <button className="button button-primary" onClick={() => setView("write")}>Write a story</button>
+                  <button className="button button-primary" onClick={() => { if (!user) { setAuthPage("login"); return; } setView("write"); }}>Write a story</button>
                   <button className="button button-secondary" onClick={() => setView("categories")}>Browse topics</button>
                 </div>
               </div>
@@ -559,6 +559,7 @@ function App() {
                   type="search"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   placeholder="Search posts, tags or authors..."
                 />
                 <button className="button button-primary" onClick={handleSearch}>Search</button>
@@ -673,7 +674,7 @@ function App() {
 
           {view === "help" && (
             <div className="panel-card help-panel">
-              {user.role === "admin" ? (
+              {user?.role === "admin" ? (
                 <>
                   <div className="section-heading">
                     <div>
@@ -796,7 +797,7 @@ function App() {
 
               <div 
                 className="post-detail-body" 
-                dangerouslySetInnerHTML={{ __html: selectedPost.content }} 
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedPost.content) }} 
               />
 
               <div className="post-detail-actions">
