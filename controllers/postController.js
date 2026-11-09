@@ -133,11 +133,11 @@ exports.deletePost = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Post not found' });
     }
 
-    if (post.author.toString() !== req.user.userId && req.user.role !== 'admin') {
+    if (post.author && post.author.toString() !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ success: false, message: 'Forbidden: only the publisher can delete this post' });
     }
 
-    await post.remove();
+    await post.deleteOne();
     res.json({ success: true, message: 'Post deleted successfully' });
   } catch (error) {
     return res.status(500).json({ success: false, message: 'Failed to delete post', error: error.message });
